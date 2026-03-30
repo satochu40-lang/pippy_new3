@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+/* お城全体をパステルピンクにする魔法にゃ！ */
+body {
+  background-color: #fff0f5; /* ラベンダーブラッシュという優しいピンクにゃ */
+}
+/* お城全体をパステルピンクにして、文字をチョコ色にするにゃ！ */
+body {
+  background-color: #fff0f5; /* パステルピンク（ラベンダーブラッシュ） */
+  color: #5d4037;            /* チョコ茶色（ダークブラウン）にゃ！ */
+}
+/* 「Pippyの世界へようこそにゃ！」を特別にするにゃ */
+h1 {
+  border-bottom: 3px dashed #f06292; /* ピンクの点々の下線を引くにゃ */
+  display: inline-block;             /* 線の長さを文字に合わせるにゃ */
+  padding-bottom: 5px;               /* 少しだけスキマを空けるにゃ */
+}
