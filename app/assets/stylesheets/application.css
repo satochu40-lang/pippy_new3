@@ -28,3 +28,21 @@ h1 {
   display: inline-block;             /* 線の長さを文字に合わせるにゃ */
   padding-bottom: 5px;               /* 少しだけスキマを空けるにゃ */
 }
+/* 「Pippyについて知るにゃ！」のボタンを可愛くするにゃ！ */
+a {
+  display: inline-block;
+  padding: 10px 20px;       /* ボタンの中のスキマにゃ */
+  background-color: #f06292; /* 濃いめのイチゴピンクにゃ！ */
+  color: #ffffff;            /* 文字は白くして読みやすくするにゃ */
+  text-decoration: none;     /* 下線を消してスッキリさせるにゃ */
+  border-radius: 25px;       /* 角を丸くして、たまご型にするにゃ 🥚 */
+  font-weight: bold;         /* 文字を太くして目立たせるにゃ */
+  box-shadow: 0 4px #d81b60; /* 下に影をつけて、立体的にするにゃ！ */
+}
+
+/* マウスを乗せた時に、少し沈む魔法にゃ！ */
+a:hover {
+  background-color: #ec407a;
+  transform: translateY(2px);
+  box-shadow: 0 2px #d81b60;
+}
