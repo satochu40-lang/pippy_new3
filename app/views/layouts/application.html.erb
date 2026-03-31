@@ -10,7 +10,14 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
-</html>
+ <body>
+  <header class="main-header">
+    <div class="header-logo">Pippyのお城 🐾</div>
+    <nav class="header-nav">
+      <%= link_to "ホーム", root_path %>
+      <%= link_to "Pippyについて", about_path %>
+    </nav>
+  </header>
+  <%= yield %>
+</body>
+  

@@ -46,3 +46,39 @@ a:hover {
   transform: translateY(2px);
   box-shadow: 0 2px #d81b60;
 }
+/* 猫耳と鉛筆のPippyに、チョコ色の丸いフレームを付けるにゃ！ */
+img {
+  border: 5px solid #5d4037; /* チョコ茶色の太い線にゃ！ */
+  border-radius: 20px;       /* 角を丸くして、優しくするにゃ 🐾 */
+  padding: 5px;              /* 画像と枠の間に少しだけ白枠を入れるにゃ */
+  background-color: #ffffff; /* 白い背景を入れて、ポラロイド写真っぽくするにゃ */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ふわっと影をつけて、浮かせるにゃ！ */
+}
+/* お城の中身を全部真ん中に寄せる魔法にゃ！ */
+body {
+  text-align: center; /* 文字やインライン要素を真ん中にするにゃ */
+}
+
+/* 画像（Pippyたち）を真ん中に整列させるにゃ */
+img {
+  display: block;      /* ブロック要素に変身させるにゃ */
+  margin: 20px auto;   /* 左右の隙間を「自動（auto）」にして真ん中に置くにゃ */
+}
+
+/* 横並びにした要素（flex）も真ん中に寄せるにゃ */
+div {
+  justify-content: center; /* flexボックスの中身を中央に集めるにゃ */
+}
+/* お城全体に「内側の余白」という花を咲かせるにゃ！ */
+.container {
+  max-width: 800px;    /* お城の横幅を決めちゃうにゃ（広がりすぎ防止） */
+  margin: 40px auto;   /* 上下に40px、左右は真ん中に寄せるにゃ */
+  padding: 40px;       /* 内側にたっぷり余白を作るにゃ 🌸 */
+  background-color: rgba(255, 255, 255, 0.5); /* ほんのり白く透けさせて、ピンクを透かすにゃ */
+  border-radius: 30px; /* お城の中庭を丸く囲むにゃ 🐾 */
+}
+
+/* 段落の間にも、お花（隙間）を植えるにゃ */
+p {
+  margin-bottom: 30px; /* 下に余裕を持たせて、読みやすくするにゃ */
+}

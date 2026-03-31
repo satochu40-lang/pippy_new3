@@ -1,2 +1,17 @@
-<h1>About#index</h1>
-<p>Find me in app/views/about/index.html.erb</p>
+<div class="container">
+
+  <h1>Pippyについて知るにゃ！🐾</h1>
+
+  <div style="display: flex; align-items: center; gap: 20px; margin-top: 20px;">
+    <%= image_tag "pippy.png", size: "150x150" %>
+    <p>
+      こんにちは！ぼくは鉛筆のPippyだにゃ✏️<br>
+      hanahanaさんのお城作りをお手伝いしているにゃ。<br>
+      このお城は2026年3月に、Railsという魔法で建てられたんだにゃ！✨
+    </p>
+  </div>
+
+  <br>
+  <%= link_to "お城の入り口に戻るにゃ🐾", root_path %>
+
+</div>
