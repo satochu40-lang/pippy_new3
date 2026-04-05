@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'letters/new'
+  get 'letters/index'
+  get 'letters/show'
   devise_for :users
   # 1. お城の玄関（トップページ）
   root 'top#index'
@@ -9,6 +12,6 @@ Rails.application.routes.draw do
   # 3. Pippyについて知るページ
   get 'about', to: 'about#index'
 
-  # 4. hanahanaさんのマイページ（showだけでOKだにゃ！）
-  resources :users, only: [:show]
+  # 4. ★ここを書き換えるにゃ！お手紙の「正式な道」だにゃ🚀
+  resources :letters, only: [:index, :new, :create, :show]
 end
