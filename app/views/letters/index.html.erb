@@ -2,9 +2,15 @@
   <h1>💌 Pippyへの手紙一覧 💌</h1>
   <p>ここに、みんなから届いた温かいメッセージが並ぶにゃ！🐾</p>
 
-  <%# あとでお手紙を並べる魔法（each文）をここに書くにゃ！ %>
-
-  <div class="btn-area" style="margin-top: 30px;">
-    <%= link_to "新しいお手紙を書く✏️", new_letter_path, class: "btn" %>
+  <div class="letters-list">
+    <% @letters.each do |letter| %>
+      <div class="letter-card">
+        <p><%= letter.content %></p>
+        <span class="date"><%= letter.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+      </div>
+    <% end %>
   </div>
+
+  <hr>
+  <%= link_to "新しいお手紙を書く✏️", new_letter_path, class: "btn" %>
 </div>

@@ -1,2 +1,18 @@
-<h1>Letters#new</h1>
-<p>Find me in app/views/letters/new.html.erb</p>
+<div class="container">
+  <h1>✏️ Pippyへのお手紙を書くにゃ</h1>
+
+  <%= form_with model: @letter, local: true do |f| %>
+    
+
+    <div class="field">
+      <%= f.label :content, "お手紙の内容" %><br />
+      <%= f.text_area :content, placeholder: "ここにメッセージを書くにゃ！", rows: 5 %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Pippyに届ける！💌", class: "btn" %>
+    </div>
+  <% end %>
+
+  <%= link_to "一覧に戻る🐾", letters_path %>
+</div>
