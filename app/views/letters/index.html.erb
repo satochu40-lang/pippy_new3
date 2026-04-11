@@ -2,14 +2,20 @@
   <h1>💌 Pippyへの手紙一覧 💌</h1>
   <p>ここに、みんなから届いた温かいメッセージが並ぶにゃ！🐾</p>
 
-  <div class="letters-list">
-    <% @letters.each do |letter| %>
-      <div class="letter-card">
-        <p><%= letter.content %></p>
-        <span class="date"><%= letter.created_at.strftime("%Y/%m/%d %H:%M") %></span>
-      </div>
-    <% end %>
+ <% @letters.each do |letter| %>
+  <div class="letter-card" style="background-color: white; border-radius: 10px; padding: 10px; margin-bottom: 10px; border: 2px solid #ffb6c1;">
+    
+   <p style="font-weight: bold; color: #ff69b4;">
+  <%# letter(小文字)にして、ぼんやりした「email」を表示してみるにゃ %>
+  👤 <%= letter.user.email %> さんより
+ </p>
+
+    <p><%= letter.content %></p>
+    <span class="date" style="font-size: 0.8em; color: #888;">
+      <%= letter.created_at.strftime("%Y/%m/%d %H:%M") %>
+    </p>
   </div>
+ <% end %>
 
   <hr>
   <%= link_to "新しいお手紙を書く✏️", new_letter_path, class: "btn" %>

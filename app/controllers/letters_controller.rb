@@ -3,7 +3,8 @@ class LettersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @letters = Letter.all # 金庫にあるお手紙を全部持ってくるにゃ
+    # 「includes(:user)」を入れると、名前を呼ぶのが早くなる魔法だにゃ！
+  @letters = Letter.all.includes(:user).order(created_at: :desc)
   end
 
   def new

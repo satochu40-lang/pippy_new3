@@ -88,3 +88,21 @@ p {
   margin-bottom: 30px;
   line-height: 1.8;
 }
+.btn {
+  background-color: #ffb6c1; /* 桜色にゃ！ */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px; /* 角を丸くするにゃ！ */
+  text-decoration: none;
+  font-weight: bold;
+}
+.btn {
+  /* ...今のコードにこれを足すと、影がついて可愛くなるにゃ！ */
+  box-shadow: 0 4px 0 #ff8da1; 
+}
+
+.btn:active {
+  /* 押した時に少し沈む魔法だにゃ！ */
+  transform: translateY(4px);
+  box-shadow: none;
+}
