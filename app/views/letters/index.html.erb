@@ -2,21 +2,41 @@
   <h1>💌 Pippyへの手紙一覧 💌</h1>
   <p>ここに、みんなから届いた温かいメッセージが並ぶにゃ！🐾</p>
 
- <% @letters.each do |letter| %>
-  <div class="letter-card" style="background-color: white; border-radius: 10px; padding: 10px; margin-bottom: 10px; border: 2px solid #ffb6c1;">
-    
-   <p style="font-weight: bold; color: #ff69b4;">
-  <%# letter(小文字)にして、ぼんやりした「email」を表示してみるにゃ %>
-  👤 <%= letter.user.email %> さんより
- </p>
+  <div class="letters-list">
+    <%# 🌟 ここで「letter」という名前で1通ずつ取り出しているにゃ！ %>
+    <% @letters.each do |letter| %>
+      <div class="letter-card" style="border: 2px solid #ffb6c1; padding: 10px; margin-bottom: 10px; border-radius: 10px;">
+       
+      <%# 🌟 ここにタイトルを追加するにゃ！ 🌟 %>
+    <% if letter.title.present? %>
+      <h2 style="color: #ff1493; font-size: 1.4em; margin-top: 0; border-bottom: 1px dashed #ffb6c1; padding-bottom: 5px;">
+        ✉️ <%= letter.title %>
+      </h2>
+    <% else %>
+      <h2 style="color: #ccc; font-size: 1.1em; margin-top: 0;">（タイトルなし）</h2>
+    <% end %>
+        <p style="font-weight: bold; color: #ff69b4;">
+          👤 <%= letter.user.email %> さんより
+        </p>
+        
+        <p><%= letter.content %></p>
+        <span class="date" style="font-size: 0.8em; color: #888;">
+          <%= letter.created_at.strftime("%Y/%m/%d %H:%M") %>
+        </span>
 
-    <p><%= letter.content %></p>
-    <span class="date" style="font-size: 0.8em; color: #888;">
-      <%= letter.created_at.strftime("%Y/%m/%d %H:%M") %>
-    </p>
+        <%# 🌟 ここが「自分のお手紙だけ」に見せる魔法だにゃ！ 🌟 %>
+        <% if user_signed_in? && current_user.id == letter.user_id %>
+          <div class="letter-manage" style="margin-top: 10px;">
+            <%= link_to '編集するにゃ', edit_letter_path(letter), style: "color: #ff69b4; text-decoration: none; margin-right: 15px;" %>
+            <%= link_to '消去するにゃ', letter_path(letter), data: { turbo_method: :delete, turbo_confirm: "本当にお手紙を燃やしちゃうのかにゃ？🔥" }, style: "color: #ff0000; text-decoration: none;" %>
+          </div>
+        <% end %>
+
+      </div>
+    <% end %>
   </div>
- <% end %>
 
   <hr>
-  <%= link_to "新しいお手紙を書く✏️", new_letter_path, class: "btn" %>
+  <%= link_to "📮 トップページに戻るにゃ！", root_path, class: "btn" %>
+  <%= link_to "✏️ 新しいお手紙を書く", new_letter_path, class: "btn" %>
 </div>

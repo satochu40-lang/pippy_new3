@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   get 'about', to: 'about#index'
 
   # 4. ★ここを書き換えるにゃ！お手紙の「正式な道」だにゃ🚀
-  resources :letters, only: [:index, :new, :create, :show]
+  resources :letters, only: [:index, :new, :create, :edit, :update, :destroy]
 end

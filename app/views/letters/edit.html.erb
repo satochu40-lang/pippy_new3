@@ -1,0 +1,21 @@
+<div class="container">
+  <h1 style="color: #ff69b4;">✏️ お手紙を書き直すにゃ！</h1>
+  <p>さっきの想いを、もっと素敵にアップデートするにゃ🐾</p>
+  <%= form_with model: @letter, local: true do |f| %>
+  <div class="field">
+  <%= f.label :title, "タイトル" %><br />
+  <%= f.text_field :title, placeholder: "お手紙のタイトルをここに書くにゃ！", style: "width: 100%; border: 2px solid #ffb6c1; border-radius: 10px; padding: 5px;" %>
+
+    <div class="field">
+      <%= f.label :content, "お手紙の中身" %><br />
+      <%= f.text_area :content, placeholder: "ここを書き直すにゃ...", rows: "5", style: "width: 100%; border: 2px solid #ffb6c1; border-radius: 10px;" %>
+    </div>
+
+    <div class="actions" style="margin-top: 20px;">
+      <%= f.submit "書き直し完了にゃ！✨", class: "btn", style: "background-color: #ffb6c1; border: none; padding: 10px 20px; border-radius: 20px; color: white; cursor: pointer;" %>
+    </div>
+  <% end %>
+
+  <hr>
+  <%= link_to "やっぱり戻るにゃ！", letters_path, style: "color: #888; text-decoration: none;" %>
+</div>

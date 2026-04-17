@@ -22,10 +22,23 @@ class LettersController < ApplicationController
     end
   end
 
+  def edit
+    @letter = Letter.find(params[:id]) # 編集したいお手紙を1通選んでくるにゃ
+  end
+
+  # 🌟 ついでに「直した内容を保存する」仕事も追加にゃ！ 🌟
+  def update
+    @letter = Letter.find(params[:id])
+    if @letter.update(letter_params)
+      redirect_to letters_path # 直せたら一覧に戻るにゃ
+    else
+      render :edit, status: :unprocessable_entity # ダメだったらもう一度編集画面にゃ
+    end
+  end
   private
 
   def letter_params
-    # 内容（content）だけを許可するルールだにゃ🗝️
-    params.require(:letter).permit(:content)
-  end
+  # :content の横に :title を追加するにゃ！
+  params.require(:letter).permit(:content, :title).merge(user_id: current_user.id)
+end
 end

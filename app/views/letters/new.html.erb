@@ -2,7 +2,11 @@
   <h1>✏️ Pippyへのお手紙を書くにゃ</h1>
 
   <%= form_with model: @letter, local: true do |f| %>
-    
+
+  <div class="field">
+    <%= f.label :title, "タイトル" %><br />
+    <%= f.text_field :title, placeholder: "お手紙のタイトルをここに書くにゃ！", style: "width: 100%; border: 2px solid #ffb6c1; border-radius: 10px; padding: 5px;" %>
+  </div>
 
     <div class="field">
       <%= f.label :content, "お手紙の内容" %><br />
