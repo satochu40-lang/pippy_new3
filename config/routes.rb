@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
-  get 'letters/new'
-  get 'letters/index'
-  get 'letters/show'
+  # get 'letters/new'   <-- resources を使うなら、この3行は消してもOKだにゃ！
+  # get 'letters/index'
+  # get 'letters/show'
+
   devise_for :users
-  # 1. お城の玄関（トップページ）
   root 'top#index'
 
-  # 2. ログイン機能の道（これをこの後追加するにゃ！）
-  # devise_for :users
-
-  # 3. Pippyについて知るページ
   get 'about', to: 'about#index'
 
-  # 4. ★ここを書き換えるにゃ！お手紙の「正式な道」だにゃ🚀
+  # 🌟 ここを修正にゃ！only: [:index, :new, :create, :edit, :update, :destroy] にするにゃ
   resources :letters, only: [:index, :new, :create, :edit, :update, :destroy]
+
+  # 🌟 マイページ用の道も忘れずに足しておくんだにゃ！
+  resources :users, only: :show
 end

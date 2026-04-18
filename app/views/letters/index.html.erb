@@ -8,12 +8,13 @@
       <div class="letter-card" style="border: 2px solid #ffb6c1; padding: 10px; margin-bottom: 10px; border-radius: 10px;">
        
       <%# 🌟 ここにタイトルを追加するにゃ！ 🌟 %>
+    <%# 昨日のコードを、クラス名付きにアップデートにゃ！ %>
     <% if letter.title.present? %>
-      <h2 style="color: #ff1493; font-size: 1.4em; margin-top: 0; border-bottom: 1px dashed #ffb6c1; padding-bottom: 5px;">
-        ✉️ <%= letter.title %>
-      </h2>
+    <h2 class="letter-title">
+    <span>✉️</span> <%= letter.title %>
+    </h2>
     <% else %>
-      <h2 style="color: #ccc; font-size: 1.1em; margin-top: 0;">（タイトルなし）</h2>
+    <h2 class="letter-title no-title">（タイトルなし）</h2>
     <% end %>
         <p style="font-weight: bold; color: #ff69b4;">
           👤 <%= letter.user.email %> さんより

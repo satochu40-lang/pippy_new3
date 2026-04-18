@@ -106,3 +106,29 @@ p {
   transform: translateY(4px);
   box-shadow: none;
 }
+/* お手紙タイトルのデザインだにゃ！ */
+.letter-title {
+  background: #fff0f5;          /* ほんのり桜色の背景 */
+  color: #ff1493;               /* 濃いピンクの文字色 */
+  padding: 10px 15px;           /* 中の余白 */
+  border-left: 8px solid #ffb6c1; /* 左側に太いピンクの線（リボン風） */
+  border-radius: 5px;           /* 角を少し丸くするにゃ */
+  font-size: 1.5em;             /* 文字を大きく！ */
+  font-weight: bold;            /* 文字を太く！ */
+  margin-bottom: 15px;          /* 下との隙間 */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 少し浮き出ているように見せるにゃ */
+}
+
+/* タイトルのアイコン（✉️）を少し跳ねさせるにゃ */
+.letter-title span {
+  display: inline-block;
+  margin-right: 8px;
+  transform: rotate(-10deg);
+}
+
+/* タイトルがない時のデザインにゃ */
+.no-title {
+  background: #f5f5f5;
+  color: #ccc;
+  border-left: 8px solid #ddd;
+}
