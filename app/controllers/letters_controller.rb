@@ -33,6 +33,13 @@ class LettersController < ApplicationController
       redirect_to letters_path # 直せたら一覧に戻るにゃ
     else
       render :edit, status: :unprocessable_entity # ダメだったらもう一度編集画面にゃ
+      # --- ここから書き足すにゃ！ ---
+  def destroy
+    @letter = Letter.find(params[:id]) # 消したいお手紙を探すにゃ
+    @letter.destroy                   # 魔法でパッと消すにゃ！
+    redirect_to user_path(current_user), notice: "お手紙を消したにゃ！🍃" # マイページに戻るにゃ
+  end
+  # --- ここまで！ ---
     end
   end
   private

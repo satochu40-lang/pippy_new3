@@ -11,6 +11,23 @@
     <%# 🌟 ここがお手紙を一つずつ取り出す魔法だにゃ！ %>
     <% if @letters.any? %>
       <% @letters.each do |letter| %>
+        <%# 自分の投稿の時だけ、ボタンを出す魔法にゃ！ %>
+    <% if letter.user_id == current_user.id %>
+     <%# --- 三点リーダーのメニューの中身を書き換えるにゃ！ --- %>
+<div class="menu-dropdown" style="position: absolute; right: 0; background: white; border: 1px solid #ffb6c1; border-radius: 8px; padding: 10px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 150px;">
+  
+  <%# 🌟 ここに新しく「読み上げボタン」を追加するにゃ！ %>
+      <button onclick="speechSynthesis.speak(new SpeechSynthesisUtterance('<%= j letter.content %>'))" 
+          style="display: block; width: 100%; text-align: left; background: none; border: none; color: #ff1493; cursor: pointer; margin-bottom: 10px; font-family: inherit;">
+        声を聴くにゃ！📢
+        </button>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 5px 0;">
+
+       <%= link_to "編集✏️", edit_letter_path(letter), style: "display: block; text-decoration: none; color: #ff69b4; margin-bottom: 10px;" %>
+       <%= link_to "消去🗑️", letter_path(letter), data: { turbo_method: :delete, turbo_confirm: "本当に消していいにゃ？" }, style: "display: block; text-decoration: none; color: #999;" %>
+      </div>
+      <% end %>
         <div class="letter-card" style="border: 2px solid #ffb6c1; padding: 15px; margin-bottom: 15px; border-radius: 15px; background-color: white;">
           <% if letter.title.present? %>
             <h2 style="font-size: 1.2em; color: #ff69b4;">✉️ <%= letter.title %></h2>
