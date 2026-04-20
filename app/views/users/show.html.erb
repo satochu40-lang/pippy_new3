@@ -2,41 +2,48 @@
 <div class="container" style="background-color: #fff5ee; border: 5px double #ffb6c1; padding: 30px; border-radius: 30px;">
   <h1 style="color: #ff1493; text-shadow: 1px 1px 2px #ccc;">✨ hanahanaさんの秘密の書斎 ✨</h1>
   <p>ここでは、あなただけが紡いだ言葉たちが大切に守られているにゃ🐾</p>
-  
-  <%# --- 以下、お手紙を並べるコード --- %>
-</div>
   <p>これまでPippyに届いたお手紙の一覧だにゃ！✉️</p>
 
   <div class="letters-list" style="margin-top: 20px;">
-    <%# 🌟 ここがお手紙を一つずつ取り出す魔法だにゃ！ %>
     <% if @letters.any? %>
       <% @letters.each do |letter| %>
-        <%# 自分の投稿の時だけ、ボタンを出す魔法にゃ！ %>
-    <% if letter.user_id == current_user.id %>
-     <%# --- 三点リーダーのメニューの中身を書き換えるにゃ！ --- %>
-<div class="menu-dropdown" style="position: absolute; right: 0; background: white; border: 1px solid #ffb6c1; border-radius: 8px; padding: 10px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 150px;">
-  
-  <%# 🌟 ここに新しく「読み上げボタン」を追加するにゃ！ %>
-      <button onclick="speechSynthesis.speak(new SpeechSynthesisUtterance('<%= j letter.content %>'))" 
-          style="display: block; width: 100%; text-align: left; background: none; border: none; color: #ff1493; cursor: pointer; margin-bottom: 10px; font-family: inherit;">
-        声を聴くにゃ！📢
-        </button>
+        
+        <%# お手紙のカード開始 %>
+        <div class="letter-card" style="position: relative; border: 2px solid #ffb6c1; padding: 15px; margin-bottom: 15px; border-radius: 15px; background-color: white;">
+          
+          <%# 🌟 投稿時間の表示（カードの内側に移動したにゃ！） %>
+          <p style="font-size: 0.8em; color: #999; margin-bottom: 5px;">
+            📅 <%= letter.created_at.strftime("%Y/%m/%d %H:%M") %> 投稿にゃ！
+          </p>
 
-        <hr style="border: 0; border-top: 1px solid #eee; margin: 5px 0;">
+          <%# 🌟 三点リーダーメニュー（自分の投稿の時だけ） %>
+          <% if letter.user_id == current_user.id %>
+            <div class="menu-container" style="position: absolute; top: 10px; right: 10px;">
+              <details style="cursor: pointer;">
+                <summary style="list-style: none; font-size: 1.5em; color: #ff69b4;">︙</summary>
+                <div class="menu-dropdown" style="position: absolute; right: 0; background: white; border: 1px solid #ffb6c1; border-radius: 8px; padding: 10px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 150px;">
+                  
+                  <%# 読み上げボタン %>
+                  <button onclick="speechSynthesis.speak(new SpeechSynthesisUtterance('<%= j letter.content %>'))" class="read-aloud-btn">
+                    声を聴くにゃ！📢
+                  </button>
 
-       <%= link_to "編集✏️", edit_letter_path(letter), style: "display: block; text-decoration: none; color: #ff69b4; margin-bottom: 10px;" %>
-       <%= link_to "消去🗑️", letter_path(letter), data: { turbo_method: :delete, turbo_confirm: "本当に消していいにゃ？" }, style: "display: block; text-decoration: none; color: #999;" %>
-      </div>
-      <% end %>
-        <div class="letter-card" style="border: 2px solid #ffb6c1; padding: 15px; margin-bottom: 15px; border-radius: 15px; background-color: white;">
-          <% if letter.title.present? %>
-            <h2 style="font-size: 1.2em; color: #ff69b4;">✉️ <%= letter.title %></h2>
+                  <hr style="border: 0; border-top: 1px solid #eee; margin: 5px 0;">
+
+                  <%= link_to "編集✏️", edit_letter_path(letter), style: "display: block; text-decoration: none; color: #ff69b4; margin-bottom: 10px;" %>
+                  <%= link_to "消去🗑️", letter_path(letter), data: { turbo_method: :delete, turbo_confirm: "本当に消していいにゃ？" }, style: "display: block; text-decoration: none; color: #999;" %>
+                </div>
+              </details>
+            </div>
           <% end %>
-          <p><%= letter.content %></p>
-          <div style="text-align: right; font-size: 0.8em; color: #888;">
-            <%= letter.created_at.strftime("%Y/%m/%d %H:%M") %>
-          </div>
+
+          <%# お手紙のタイトルと中身 %>
+          <% if letter.title.present? %>
+            <h2 style="font-size: 1.2em; color: #ff69b4; margin-top: 10px;">✉️ <%= letter.title %></h2>
+          <% end %>
+          <p style="margin-top: 10px;"><%= letter.content %></p>
         </div>
+
       <% end %>
     <% else %>
       <p>まだお手紙が届いていないみたいだにゃ……😿</p>

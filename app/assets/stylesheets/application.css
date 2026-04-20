@@ -132,3 +132,32 @@ p {
   color: #ccc;
   border-left: 8px solid #ddd;
 }
+/* 三点リーダーメニューをふわっと出す魔法 */
+details[open] .menu-dropdown {
+  animation: fuwa-rise 0.3s ease-out;
+}
+
+@keyframes fuwa-rise {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 読み上げボタンを可愛くする魔法 */
+.read-aloud-btn {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border-radius: 20px; /* 丸みをつけて可愛く！ */
+  background: linear-gradient(135deg, #ffb6c1, #ff69b4); /* 桜色のグラデーション */
+  color: white !important;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 2px 5px rgba(255, 105, 180, 0.3);
+}
+
+.read-aloud-btn:hover {
+  transform: scale(1.05); /* マウスを乗せるとぷにっと膨らむにゃ */
+  filter: brightness(1.1);
+}
