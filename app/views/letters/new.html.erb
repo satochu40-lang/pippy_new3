@@ -2,6 +2,10 @@
   <h1>✏️ Pippyへのお手紙を書くにゃ</h1>
 
   <%= form_with model: @letter, local: true do |f| %>
+    <div class="field" style="margin-top: 20px;">
+     <%= f.label :image, "お気に入りの写真を選ぶにゃ📸" %><br />
+     <%= f.file_field :image %>
+    </div>
 
   <div class="field">
     <%= f.label :title, "タイトル" %><br />

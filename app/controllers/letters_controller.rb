@@ -44,8 +44,8 @@ class LettersController < ApplicationController
   end
   private
 
-  def letter_params
-  # :content の横に :title を追加するにゃ！
-  params.require(:letter).permit(:content, :title).merge(user_id: current_user.id)
+def letter_params
+  # 🌟 末尾に「:image」を追加して、写真を受け取れるようにするにゃ！
+  params.require(:letter).permit(:content, :title, :image).merge(user_id: current_user.id)
 end
 end

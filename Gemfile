@@ -71,3 +71,5 @@ group :test do
   gem "selenium-webdriver"
 
 end
+# Gemfileのどこかに書き足すにゃ
+gem "image_processing", "~> 1.2"
