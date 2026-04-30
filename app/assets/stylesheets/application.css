@@ -20,9 +20,9 @@
 /* お城の背景を「ピンクから白」へ、ふわっと変える魔法にゃ！ */
 /* 1. お城全体のベース（ここを最新版に上書きにゃ！） */
 body {
-  /* background-color を消して、この background 1行だけにするにゃ！ */
-  background: linear-gradient(180deg, #ffc0cb 0%, #ffffff 100%) !important;
-  
+  font-family: "Kiwi Maru", serif;
+  color: #5d4037; /* 真っ黒じゃなくて、チョコブラウンにするのがコツにゃ！ */
+
   /* 画面の下まで色を引っ張る魔法にゃ 🐾 */
   min-height: 100vh;
   margin: 0;
@@ -30,6 +30,21 @@ body {
 
   color: #5d4037;
   text-align: center;
+}
+/* ボタンをマシュマロみたいにする魔法 */
+.btn {
+  background-color: #ffb6c1 !important; /* さくら色 */
+  color: white !important;
+  border-radius: 50px !important; /* 完全に丸くするにゃ！ */
+  padding: 12px 25px !important;
+  border: none;
+  box-shadow: 0 4px 0 #ff91a4; /* 下に少し濃い色を入れて立体感！ */
+  font-weight: bold;
+}
+
+.btn:active {
+  transform: translateY(2px); /* 押した時に少し沈むにゃ🐾 */
+  box-shadow: none;
 }
 
 /* 2. お城の中庭（白いカードとピンクの点々） */

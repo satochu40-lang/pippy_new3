@@ -1,4 +1,4 @@
-<%# 🌟 マイページ背景設定 %>
+<%# 🌟 マイページ全体のコンテナ %>
 <div class="container" style="background-color: #fff5ee; border: 5px double #ffb6c1; padding: 30px; border-radius: 30px;">
   <h1 style="color: #ff1493; text-shadow: 1px 1px 2px #ccc;">✨ hanahanaさんの秘密の書斎 ✨</h1>
   <p>ここでは、あなただけが紡いだ言葉たちが大切に守られているにゃ🐾</p>
@@ -8,40 +8,19 @@
     <% if @letters.any? %>
       <% @letters.each do |letter| %>
         
-        <%# お手紙カード開始 %>
-        <%# --- 1. カード自体の枠を広げるにゃ！ --- %>
-    <div class="letter-card" style="position: relative; border: 2px solid #ffb6c1; padding: 20px; margin-bottom: 20px; border-radius: 15px; background-color: white; width: 100%; box-sizing: border-box;">
-
-    <%# --- 2. 投稿時間などはそのまま --- %>
-    <p style="font-size: 0.8em; color: #999; margin-bottom: 5px;">📅 <%= letter.created_at.strftime("%Y/%m/%d %H:%M") %> 投稿にゃ！</p>
-
-     <%# --- 3. 画像を枠いっぱいに広げる魔法にゃ！ --- %>
-     <% if letter.image.attached? %>
-    <div class="letter-image" style="margin-top: 15px; margin-bottom: 15px; text-align: center;">
-      <%= image_tag letter.image.variant(resize_to_limit: [1200, 1200]), 
-          style: "border-radius: 10px; border: 2px solid #eee; width: 100%; height: auto; display: block; margin: 0 auto;" %>
-    </div>
-     <% end %>
-
-      <%# --- お手紙の中身など --- %>
-      <p style="font-size: 1.1em; line-height: 1.6;"><%= letter.content %></p>
-        </div>
+        <%# --- お手紙カード開始 --- %>
+        <div class="letter-card" style="position: relative; border: 2px solid #ffb6c1; padding: 20px; margin-bottom: 20px; border-radius: 15px; background-color: white; width: 100%; box-sizing: border-box;">
           
-          <%# 投稿時間 %>
-          <p style="font-size: 0.8em; color: #999; margin-bottom: 5px;">
-            📅 <%= letter.created_at.strftime("%Y/%m/%d %H:%M") %> 投稿にゃ！
-          </p>
-
-          <%# 🌟 三点リーダーメニュー %>
+          <%# 🌟 三点リーダー（最前面に表示） %>
           <% if letter.user_id == current_user.id %>
-            <div class="menu-container" style="position: absolute; top: 10px; right: 10px;">
+            <div class="menu-container" style="position: absolute; top: 15px; right: 15px; z-index: 100;">
               <details style="cursor: pointer;">
-                <summary style="list-style: none; font-size: 1.5em; color: #ff69b4;">︙</summary>
-                <div class="menu-dropdown" style="position: absolute; right: 0; background: white; border: 1px solid #ffb6c1; border-radius: 8px; padding: 10px; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 150px;">
-                  <button onclick="speechSynthesis.speak(new SpeechSynthesisUtterance('<%= j letter.content %>'))" class="read-aloud-btn">
+                <summary style="list-style: none; font-size: 1.8em; color: #ff69b4; text-shadow: 1px 1px 2px white;">︙</summary>
+                <div class="menu-dropdown" style="position: absolute; right: 0; background: white; border: 1px solid #ffb6c1; border-radius: 8px; padding: 10px; z-index: 101; box-shadow: 0 4px 10px rgba(0,0,0,0.2); width: 150px;">
+                  <button onclick="speechSynthesis.speak(new SpeechSynthesisUtterance('<%= j letter.content %>'))" style="background: #fff0f5; border: 1px solid #ffb6c1; border-radius: 5px; cursor: pointer; padding: 5px; width: 100%; color: #ff1493;">
                     声を聴くにゃ！📢
                   </button>
-                  <hr style="border: 0; border-top: 1px solid #eee; margin: 5px 0;">
+                  <hr style="border: 0; border-top: 1px solid #eee; margin: 8px 0;">
                   <%= link_to "編集✏️", edit_letter_path(letter), style: "display: block; text-decoration: none; color: #ff69b4; margin-bottom: 10px;" %>
                   <%= link_to "消去🗑️", letter_path(letter), data: { turbo_method: :delete, turbo_confirm: "本当に消していいにゃ？" }, style: "display: block; text-decoration: none; color: #999;" %>
                 </div>
@@ -49,32 +28,74 @@
             </div>
           <% end %>
 
+          <%# 投稿時間 %>
+          <p style="font-size: 0.8em; color: #999; margin-bottom: 10px;">📅 <%= letter.created_at.strftime("%Y/%m/%d %H:%M") %> 投稿にゃ！</p>
+
           <%# お手紙タイトル %>
           <% if letter.title.present? %>
             <h2 style="font-size: 1.2em; color: #ff69b4; margin-top: 10px;">✉️ <%= letter.title %></h2>
           <% end %>
 
-     <% if letter.image.attached? %>
-     <div class="letter-image" style="margin-top: 15px; margin-bottom: 15px; text-align: center;">
-    <%# 🌟 max-width を 600px くらいにすると、文字とのバランスが最高になるにゃ！ %>
-    <%= image_tag letter.image, 
-        style: "width: 100%; max-width: 600px; height: auto; border-radius: 20px; border: 5px solid #ffb6c1; box-shadow: 0 8px 20px rgba(0,0,0,0.2); transition: transform 0.3s;" %>
-     </div>
-    <% end %>
+          <%# 🌟 画像表示（大きめ設定にゃ！） %>
+          <% if letter.image.attached? %>
+            <div class="letter-image" style="margin: 15px 0; text-align: center;">
+              <%= image_tag letter.image, style: "width: 100%; max-width: 250px; height: auto; border-radius: 15px; border: 4px solid #ffb6c1; box-shadow: 0 8px 16px rgba(0,0,0,0.15);" %>
+            </div>
+          <% end %>
+          <style>
+  /* 既存のボタン設定を上書きしてマシュマロ化するにゃ！ */
+  .btn, a.btn {
+    background-color: #ffb6c1 !important; /* さくら色 */
+    color: white !important;
+    border-radius: 50px !important;    /* 完璧な丸み */
+    padding: 12px 28px !important;    /* ぷっくり感 */
+    border: none !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    font-size: 1.1em !important;
+    box-shadow: 0 6px 0 #ff91a4 !important; /* 下側の厚み（マシュマロの弾力！） */
+    transition: all 0.2s !important;
+    cursor: pointer !important;
+    margin: 10px 5px !important;
+  }
+
+  /* マウスを乗せた時の動き */
+  .btn:hover, a.btn:hover {
+    background-color: #ffc0cb !important;
+    transform: translateY(-2px) !important; /* ふわっと浮くにゃ */
+    box-shadow: 0 8px 0 #ff91a4 !important;
+  }
+
+  /* クリックした（押した）時の動き */
+  .btn:active, a.btn:active {
+    transform: translateY(4px) !important; /* グニュッと沈むにゃ！ */
+    box-shadow: 0 2px 0 #ff91a4 !important;
+  }
+</style>
 
           <%# お手紙の中身 %>
-          <p style="margin-top: 10px;"><%= letter.content %></p>
+          <p style="margin-top: 15px; line-height: 1.6; color: #333;"><%= letter.content %></p>
         </div>
+        <%# --- お手紙カード終了 --- %>
 
-      <% end %> <%# ここで each を閉じるにゃ！ %>
+      <% end %> <%# ここで each を閉じる %>
     <% else %>
       <p>まだお手紙が届いていないみたいだにゃ……😿</p>
-    <% end %>
+    <% end %> <%# ここで if @letters.any? を閉じる %>
   </div>
 
-  <div style="margin-top: 30px;">
-    <%= link_to "お手紙を書くにゃ！✏️", new_letter_path, class: "btn", style: "background-color: #ffb6c1; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;" %>
+ <%# --- ここからスッキリまとめるにゃ！ --- %>
+  <div style="margin-top: 40px; text-align: center;">
+    
+    <%# 🌟 これが本命の「マシュマロボタン」にゃ！ %>
+    <%= link_to "お手紙を書くにゃ！✏️", new_letter_path, 
+        style: "background-color: #ffb6c1; color: white; padding: 15px 40px; text-decoration: none; border-radius: 50px; display: inline-block; font-weight: bold; box-shadow: 0 6px 0 #ff91a4; font-size: 1.2em; transition: 0.2s;" %>
+
     <br><br>
-    <%= link_to "みんなの掲示板に戻るにゃ！", root_path, style: "color: #ff69b4; text-decoration: none;" %>
+
+    <%# 戻るリンクも少し可愛く整えたにゃ %>
+    <%= link_to "みんなの掲示板に戻るにゃ！", root_path, 
+        style: "color: #ff69b4; text-decoration: none; font-size: 0.9em; font-weight: bold; border-bottom: 2px dotted #ffb6c1;" %>
   </div>
-</div>
+</div> <%# 最後に全体の閉じタグを忘れずににゃ！ %>
